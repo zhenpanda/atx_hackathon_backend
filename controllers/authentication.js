@@ -47,3 +47,16 @@ exports.checkuser = function(req, res, next) {
 // {
 // 	"email": "test"
 // }
+
+exports.findall = function(req, res, next) {
+  // res.send({success:'true'})
+  User.find(function(err, users){
+    if(err){ 
+      return next(err); 
+    };
+    users.json(users);
+  });}
+
+// localhost:5000/findall
+// get
+
