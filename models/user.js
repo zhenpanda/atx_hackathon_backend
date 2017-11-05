@@ -5,7 +5,7 @@ const userSchema = new Schema({
   email: {type: String},
   password: String,
   address: String,
-  phone: Number
+  phone: Number,
   politicians: [{name: String, amount: Number}]
 });
 

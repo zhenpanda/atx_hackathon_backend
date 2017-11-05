@@ -7,6 +7,9 @@ exports.signup = function(req, res, next) {
   console.log("reached signup route...");
   const email = req.body.email;
   const password = req.body.password;
+  const address = req.body.address;
+  const phone = req.body.phone;
+
   User.findOne({email:email}, function(err, existingUser) {
     if(err) {return next(err)}
     if(existingUser) {
@@ -40,7 +43,7 @@ exports.createPolitician = function(req, res, next) {
   const password = req.body.password;
   const name = req.body.name;
   const office = req.body.office;
-  const federal =req.body.federal;
+  const federal = req.body.federal;
 
   Politician.findOne({email:email}, function(err, existingUser) {
     if(err) {return next(err)}
@@ -48,16 +51,16 @@ exports.createPolitician = function(req, res, next) {
       return res.status(422).send({error:'Email is in use'});
     }
     // create user object
-    const user = new User({
+    const politician = new Politician({
       email: email,
       password: password,
       name: name,
       office: office,
       federal: federal,
     });
-    user.save(function(err) {
+    politician.save(function(err) {
       if(err) {return next(err)}
-      res.json(user);
+      res.json(politician);
     });
     //TODO - save user to VAN api
   });
@@ -110,7 +113,21 @@ exports.findallPoliticians = function(req, res, next) {
       return next(err); 
     };
     res.send(pols);
+  });
+}
+
+exports.donate = function(req, res, next) {
+  // res.send({success:'true'})
+  const email = req.body.email;
+  User.findOne({email:email}, function(err, existingUser) {
+    if(err) {return next(err)}
+    if(existingUser) {
+        // res.send({success:'true'})
+      res.send(existingUser);
+    }
+  });
   });}
+
 
 // localhost:5000/findallpols
 // get all politicians
