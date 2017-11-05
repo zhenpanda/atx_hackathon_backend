@@ -48,13 +48,13 @@ exports.checkuser = function(req, res, next) {
 // 	"email": "test"
 // }
 
-exports.findall = function(req, res, next) {
+exports.findallUsers = function(req, res, next) {
   // res.send({success:'true'})
   User.find(function(err, users){
     if(err){ 
       return next(err); 
     };
-    users.json(users);
+    res.send(users);
   });}
 
 // localhost:5000/findall

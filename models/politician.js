@@ -1,11 +1,11 @@
 var mongoose = require ("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const politicianSchema = new Schema({
   email: {type: String},
-  password: String,
-  address: String,
-  phone: Number
+  type: String,
+  federal: Boolean,
+  donors: Array
 });
 
 const ModelClass = mongoose.model('user', userSchema);
