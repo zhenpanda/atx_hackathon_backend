@@ -37,6 +37,10 @@ exports.createpolitician = function(req, res, next) {
   console.log("reached signup route...");
   const email = req.body.email;
   const password = req.body.password;
+  const name = req.body.name;
+  const office = req.body.office;
+  const federal =req.body.federal;
+
   User.findOne({email:email}, function(err, existingUser) {
     if(err) {return next(err)}
     if(existingUser) {
@@ -45,7 +49,10 @@ exports.createpolitician = function(req, res, next) {
     // create user object
     const user = new User({
       email: email,
-      password: password
+      password: password,
+      name: name,
+      office: office,
+      federal: federal,
     });
     user.save(function(err) {
       if(err) {return next(err)}
@@ -55,11 +62,14 @@ exports.createpolitician = function(req, res, next) {
   });
 }
 
-// localhost:5000/signup
+// localhost:5000/createpolitician
 // post
 // {
-//  "email": "test",
-//  "password": 1234
+//  "name": "John Doe",
+//  "email": "johndoe@johndoe.com",
+//  "password": 1234,
+//  "office": office,
+//  "federal": federal
 // }
 
 exports.checkuser = function(req, res, next) {

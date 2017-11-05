@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const politicianSchema = new Schema({
   email: {type: String},
   name: String,
-  Office: String,
-  type: String,
+  password: String,
+  office: String,
   federal: Boolean,
   donors: Array
 });
 
-const ModelClass = mongoose.model('user', userSchema);
+const ModelClass = mongoose.model('user', politicianSchema);
 
 module.exports = ModelClass;

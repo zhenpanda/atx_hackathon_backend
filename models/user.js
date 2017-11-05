@@ -6,6 +6,7 @@ const userSchema = new Schema({
   password: String,
   address: String,
   phone: Number
+  politicians: [{name: String, amount: Number}]
 });
 
 const ModelClass = mongoose.model('user', userSchema);
