@@ -7,4 +7,5 @@ module.exports = function(app) {
   app.post('/signup', Authentication.signup);
   app.post('/checkuser', Authentication.checkuser);
   app.get('/finddall', Authentication.finddall)
+  app.post('/createpolitician', Authentication.createpolitician);
 }
