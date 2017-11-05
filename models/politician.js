@@ -10,6 +10,6 @@ const politicianSchema = new Schema({
   donors: Array
 });
 
-const ModelClass = mongoose.model('user', politicianSchema);
+const ModelClass = mongoose.model('politician', politicianSchema);
 
 module.exports = ModelClass;

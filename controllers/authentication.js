@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Politician = require('../models/politician');
 
 exports.signup = function(req, res, next) {
   // res.send({success:'true'})
@@ -31,7 +32,7 @@ exports.signup = function(req, res, next) {
 // 	"password": 1234
 // }
 
-exports.createpolitician = function(req, res, next) {
+exports.createPolitician = function(req, res, next) {
   // res.send({success:'true'})
   console.log(req.body);
   console.log("reached signup route...");
@@ -41,7 +42,7 @@ exports.createpolitician = function(req, res, next) {
   const office = req.body.office;
   const federal =req.body.federal;
 
-  User.findOne({email:email}, function(err, existingUser) {
+  Politician.findOne({email:email}, function(err, existingUser) {
     if(err) {return next(err)}
     if(existingUser) {
       return res.status(422).send({error:'Email is in use'});
@@ -100,5 +101,17 @@ exports.findallUsers = function(req, res, next) {
   });}
 
 // localhost:5000/findall
-// get
+// get all users
+
+exports.findallPoliticians = function(req, res, next) {
+  // res.send({success:'true'})
+  Politician.find(function(err, pols){
+    if(err){ 
+      return next(err); 
+    };
+    res.send(pols);
+  });}
+
+// localhost:5000/findallpols
+// get all politicians
 
