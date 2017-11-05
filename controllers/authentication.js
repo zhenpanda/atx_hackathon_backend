@@ -118,14 +118,11 @@ exports.findallPoliticians = function(req, res, next) {
 
 exports.donate = function(req, res, next) {
   // res.send({success:'true'})
-  const email = req.body.email;
-  User.findOne({email:email}, function(err, existingUser) {
-    if(err) {return next(err)}
-    if(existingUser) {
-        // res.send({success:'true'})
-      res.send(existingUser);
-    }
-  });
+  Politician.find(function(err, pols){
+    if(err){ 
+      return next(err); 
+    };
+    res.send(pols);
   });}
 
 
